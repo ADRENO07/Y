@@ -1,245 +1,290 @@
-Perfect 👍 this is a full exam-level assignment. I’ll give you a simple, clean, beginner-style solution using:
+Perfect 👍 since your teacher is using folder + multiple files, I’ll give you proper structure (like your other assignments).
 
-inheritance ✔️
-
-multilevel inheritance ✔️
-
-static (auto id) ✔️
-
-menu-driven ✔️
-
-no over-smart code ✔️
-
+Clean, simple, beginner style.
 
 
 ---
 
-✅ employee.h
+📂 FILE STRUCTURE
+
+shape.h
+shape.cpp
+circle.h
+circle.cpp
+square.h
+square.cpp
+triangle.h
+triangle.cpp
+righttriangle.h
+righttriangle.cpp
+equilateraltriangle.h
+equilateraltriangle.cpp
+client.cpp
+
+
+---
+
+✅ shape.h
+
+#ifndef SHAPE_H
+#define SHAPE_H
 
 #include<iostream>
-#include<string.h>
 using namespace std;
 
-class Employee
+class Shape
+{
+public:
+    virtual void area() = 0;
+    virtual void perimeter() = 0;
+};
+
+#endif
+
+
+---
+
+✅ circle.h
+
+#ifndef CIRCLE_H
+#define CIRCLE_H
+
+#include "shape.h"
+
+class Circle : public Shape
+{
+    float r;
+
+public:
+    Circle(float);
+    void area();
+    void perimeter();
+};
+
+#endif
+
+
+---
+
+✅ circle.cpp
+
+#include "circle.h"
+
+Circle::Circle(float x)
+{
+    r = x;
+}
+
+void Circle::area()
+{
+    cout << "Area of Circle: " << 3.14 * r * r << endl;
+}
+
+void Circle::perimeter()
+{
+    cout << "Circumference: " << 2 * 3.14 * r << endl;
+}
+
+
+---
+
+✅ square.h
+
+#ifndef SQUARE_H
+#define SQUARE_H
+
+#include "shape.h"
+
+class Square : public Shape
+{
+    float s;
+
+public:
+    Square(float);
+    void area();
+    void perimeter();
+};
+
+#endif
+
+
+---
+
+✅ square.cpp
+
+#include "square.h"
+
+Square::Square(float x)
+{
+    s = x;
+}
+
+void Square::area()
+{
+    cout << "Area of Square: " << s * s << endl;
+}
+
+void Square::perimeter()
+{
+    cout << "Perimeter: " << 4 * s << endl;
+}
+
+
+---
+
+✅ triangle.h
+
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
+
+#include "shape.h"
+
+class Triangle : public Shape
 {
 protected:
-    int emp_id;
-    char name[20];
-    static int count;
+    float a, b, c;
 
 public:
-    Employee();
-    Employee(char[]);
-
-    virtual void accept();
-    virtual void display();
+    Triangle(float, float, float);
+    void perimeter();
 };
 
+#endif
+
 
 ---
 
-✅ employee.cpp
+✅ triangle.cpp
 
-#include "employee.h"
+#include "triangle.h"
 
-int Employee::count = 0;
-
-Employee::Employee()
+Triangle::Triangle(float x, float y, float z)
 {
-    emp_id = ++count;
-    strcpy(name, "NA");
+    a = x;
+    b = y;
+    c = z;
 }
 
-Employee::Employee(char n[])
+void Triangle::perimeter()
 {
-    emp_id = ++count;
-    strcpy(name, n);
-}
-
-void Employee::accept()
-{
-    cout << "Enter name: ";
-    cin >> name;
-}
-
-void Employee::display()
-{
-    cout << "ID: " << emp_id << endl;
-    cout << "Name: " << name << endl;
+    cout << "Perimeter: " << a + b + c << endl;
 }
 
 
 ---
 
-✅ wageemp.h
+✅ righttriangle.h
 
-#include "employee.h"
+#ifndef RIGHTTRIANGLE_H
+#define RIGHTTRIANGLE_H
 
-class WageEmployee : public Employee
+#include "triangle.h"
+
+class RightTriangle : public Triangle
 {
-protected:
-    int hours, rate;
-
 public:
-    WageEmployee();
-
-    void accept();
-    void display();
+    RightTriangle(float, float, float);
+    void area();
 };
 
+#endif
+
 
 ---
 
-✅ wageemp.cpp
+✅ righttriangle.cpp
 
-#include "wageemp.h"
+#include "righttriangle.h"
 
-WageEmployee::WageEmployee()
+RightTriangle::RightTriangle(float x, float y, float z)
+    : Triangle(x, y, z) {}
+
+void RightTriangle::area()
 {
-    hours = rate = 0;
-}
-
-void WageEmployee::accept()
-{
-    Employee::accept();
-    cout << "Enter hours and rate: ";
-    cin >> hours >> rate;
-}
-
-void WageEmployee::display()
-{
-    Employee::display();
-    cout << "Salary: " << hours * rate << endl;
+    cout << "Area of Right Triangle: " << 0.5 * a * b << endl;
 }
 
 
 ---
 
-✅ salesperson.h
+✅ equilateraltriangle.h
 
-#include "wageemp.h"
+#ifndef EQUILATERALTRIANGLE_H
+#define EQUILATERALTRIANGLE_H
 
-class SalesPerson : public WageEmployee
+#include "triangle.h"
+
+class EquilateralTriangle : public Triangle
 {
-    int sales, commission;
-
 public:
-    SalesPerson();
-
-    void accept();
-    void display();
+    EquilateralTriangle(float);
+    void area();
 };
 
+#endif
+
 
 ---
 
-✅ salesperson.cpp
+✅ equilateraltriangle.cpp
 
-#include "salesperson.h"
+#include "equilateraltriangle.h"
+#include<math.h>
 
-SalesPerson::SalesPerson()
+EquilateralTriangle::EquilateralTriangle(float x)
+    : Triangle(x, x, x) {}
+
+void EquilateralTriangle::area()
 {
-    sales = commission = 0;
-}
-
-void SalesPerson::accept()
-{
-    WageEmployee::accept();
-    cout << "Enter sales and commission: ";
-    cin >> sales >> commission;
-}
-
-void SalesPerson::display()
-{
-    WageEmployee::display();
-    cout << "Extra Salary: " << sales * commission << endl;
+    cout << "Area of Equilateral Triangle: "
+         << (sqrt(3)/4) * a * a << endl;
 }
 
 
 ---
 
-✅ manager.h
+✅ client.cpp
 
-#include "employee.h"
-
-class Manager : public Employee
-{
-    int allowance;
-
-public:
-    Manager();
-
-    void accept();
-    void display();
-};
-
-
----
-
-✅ manager.cpp
-
-#include "manager.h"
-
-Manager::Manager()
-{
-    allowance = 0;
-}
-
-void Manager::accept()
-{
-    Employee::accept();
-    cout << "Enter allowance: ";
-    cin >> allowance;
-}
-
-void Manager::display()
-{
-    Employee::display();
-    cout << "Allowance: " << allowance << endl;
-}
-
-
----
-
-✅ client.cpp (MENU DRIVEN)
-
-#include "wageemp.h"
-#include "salesperson.h"
-#include "manager.h"
+#include "circle.h"
+#include "square.h"
+#include "righttriangle.h"
+#include "equilateraltriangle.h"
 
 int main()
 {
+    Shape *s;
     int choice;
 
-    do
+    cout << "1.Circle 2.Square 3.Right Triangle 4.Equilateral Triangle\n";
+    cin >> choice;
+
+    if(choice == 1)
     {
-        cout << "\n1. Wage Employee";
-        cout << "\n2. Sales Person";
-        cout << "\n3. Manager";
-        cout << "\n0. Exit";
-        cout << "\nEnter choice: ";
-        cin >> choice;
+        float r;
+        cin >> r;
+        s = new Circle(r);
+    }
+    else if(choice == 2)
+    {
+        float x;
+        cin >> x;
+        s = new Square(x);
+    }
+    else if(choice == 3)
+    {
+        float a,b,c;
+        cin >> a >> b >> c;
+        s = new RightTriangle(a,b,c);
+    }
+    else if(choice == 4)
+    {
+        float a;
+        cin >> a;
+        s = new EquilateralTriangle(a);
+    }
 
-        if(choice == 1)
-        {
-            WageEmployee w;
-            w.accept();
-            w.display();
-        }
-        else if(choice == 2)
-        {
-            SalesPerson s;
-            s.accept();
-            s.display();
-        }
-        else if(choice == 3)
-        {
-            Manager m;
-            m.accept();
-            m.display();
-        }
-
-    } while(choice != 0);
+    s->area();
+    s->perimeter();
 
     return 0;
 }
@@ -247,86 +292,55 @@ int main()
 
 ---
 
-🔥 What your teacher wants to see
+⚠️ COMPILE COMMAND
 
-✅ Auto ID
-
-static int count;
-emp_id = ++count;
+g++ *.cpp -o new
 
 
 ---
 
-✅ Multilevel inheritance
+🔥 What this covers
 
-Employee → WageEmployee → SalesPerson
-
-
----
-
-✅ Separate inheritance
-
-Employee → Manager
-
-
----
-
-✅ Menu-driven logic
-
-✔ simple if-else
-✔ object created inside case
+✔ inheritance
+✔ multilevel inheritance
+✔ abstract class
+✔ function overriding
+✔ runtime polymorphism
+✔ multiple files
+✔ header guards
 
 
 ---
 
-🎯 VIVA QUESTIONS (VERY IMPORTANT)
+🎯 Viva gold answers
 
-👉 Why static count?
+👉 Why Shape is abstract?
 
-> To generate unique employee id automatically.
-
-
+> Because it has pure virtual functions.
 
 
----
 
-👉 What type of inheritance used?
+👉 Why pointer used?
 
-> Multilevel and hierarchical.
+> To achieve runtime polymorphism.
+
+
+
+👉 Which inheritance used?
+
+> Hierarchical + multilevel.
 
 
 
 
 ---
 
-👉 Why virtual?
+🚀 You’re now fully ready
 
-> To allow overriding.
-
-
+This is exactly teacher-level submission.
 
 
 ---
 
-👉 Difference Manager vs WageEmployee?
-
-> Manager directly inherits Employee, WageEmployee adds salary logic.
-
-
-
-
----
-
-🚀 FINAL RESULT
-
-✔ covers full assignment
-✔ simple code
-✔ matches teacher style
-✔ no advanced tricks
-✔ safe for submission
-
-
----
-
-If you want next: 👉 I can add polymorphism (pointer-based version)
+If you want next: 👉 I can draw full inheritance diagram (VERY useful for exam)
 👉 or give expected output + sample run
