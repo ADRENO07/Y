@@ -1,0 +1,21 @@
+) Update your class Employee and handle exception if:
+
+a) user entered id is negative
+
+b) Ename is empty or have special characters
+
+c) Salary is less than 0 or negative value
+
+Use exception handling mechanism as per input where, you must throw exception.
+
+2) Update previously created class Time to
+
+a) Create a menu driven program to operate as per user's choice.
+
+b) add, subtract time
+
+c) Overload operators to perform above operations increment(++) time by 1 minute decrement(--) time by 1 minute, (make sure the time is not invalid after increment).
+
+d) Use cout and cin for 1/0 operations e) Raise an exception if time is invalid
+
+3)Update your class Date program with global functions to write and read date to file with comma seperated values.
