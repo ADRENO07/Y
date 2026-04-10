@@ -19,3 +19,5 @@ c) Overload operators to perform above operations increment(++) time by 1 minute
 d) Use cout and cin for 1/0 operations e) Raise an exception if time is invalid
 
 3)Update your class Date program with global functions to write and read date to file with comma seperated values.
+
+4) Update employee hierarchy to read and write data to a file for the object of a class (Class WageEmployee)
