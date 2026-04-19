@@ -1,0 +1,9 @@
+0.7
+2020.2
+Mar 19 2026
+13:48:41
+/home/adreno/simple_clock/simple_clock.sim/sim_1/behav/xsim/glbl.v,1762536278,verilog,,,,glbl,,,,,,,,
+/home/adreno/simple_clock/simple_clock.srcs/sim_1/new/clock_counter_tb.v,1776556954,verilog,,,,clock_counter_tb,,,../../../../../VIVADO/2025.2.1/data/rsb/busdef,,,,,
+/home/adreno/simple_clock/simple_clock.srcs/sources_1/new/clock_counter.v,1776556575,verilog,,/home/adreno/simple_clock/simple_clock.srcs/sources_1/new/counter24.v,,clock_counter,,,../../../../../VIVADO/2025.2.1/data/rsb/busdef,,,,,
+/home/adreno/simple_clock/simple_clock.srcs/sources_1/new/counter24.v,1776556538,verilog,,/home/adreno/simple_clock/simple_clock.srcs/sources_1/new/counter60.v,,counter24,,,../../../../../VIVADO/2025.2.1/data/rsb/busdef,,,,,
+/home/adreno/simple_clock/simple_clock.srcs/sources_1/new/counter60.v,1776556459,verilog,,/home/adreno/simple_clock/simple_clock.srcs/sim_1/new/clock_counter_tb.v,,counter60,,,../../../../../VIVADO/2025.2.1/data/rsb/busdef,,,,,
